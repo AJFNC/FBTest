@@ -16,6 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class MainActivity extends AppCompatActivity {
 
 
+    int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseApp.initializeApp(this);
 
-        // Write a message to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
 
-        myRef.setValue("Testando o FB");
 
 
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -39,6 +36,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+
+                // Write a message to the database
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference myRef = database.getReference("message/" + count);
+
+                myRef.setValue("Eu Alexandre Cavalcanti escrevi aqui: " + count + " vezes");
+
+
+                count++;
             }
         });
     }
