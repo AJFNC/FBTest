@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.firebase.FirebaseApp;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         final TextView tvValue = findViewById(R.id.tvValue);
+        final EditText etValue = findViewById(R.id.editText2);
 
         FirebaseApp.initializeApp(this);
 
@@ -46,11 +48,13 @@ public class MainActivity extends AppCompatActivity {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
 
+                String strValue = etValue.getText().toString();
+
                 // Write a message to the database
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference myRef = database.getReference("message/" + count);
 
-                myRef.setValue("Eu Alexandre Cavalcanti escrevi aqui: " + count + " vezes");
+                myRef.setValue(strValue + ": " + count);
 
 
                 count++;
@@ -95,6 +99,8 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            finishAffinity();
+            System.exit(0);
             return true;
         }
 
