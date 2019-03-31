@@ -2,4 +2,5 @@
     <string name="app_name">FBTest</string>
     <string name="action_settings">Settings</string>
     <string name="action_exit">Sair</string>
+    <string name="msg_to_type_email_pass">Digite um e-mail e uma senha</string>
 </resources>
